@@ -7,11 +7,12 @@ class RedMineTest < Test::Unit::TestCase
 
   def setup
     @browser = Selenium::WebDriver.for :firefox
+    @wait = Selenium::WebDriver::Wait.new(:timeout => 30)
   end
 
-  # def teardown
-  #   @browser.quit
-  # end
+#def teardown
+#@browser.quit
+#end
 
   def test1_registration
     go_to_home_page
@@ -54,15 +55,28 @@ class RedMineTest < Test::Unit::TestCase
 #    <div class="flash notice" id="flash_notice">Successful creation.</div>
   end
 
-  def test5_adduser
+  def test5_adduser_toproject
     go_to_home_page
-    user1=register
+    user_to_add=register
+    # puts user_to_add
     logout
     register
     cr_project
+    @browser.find_element(:id, 'tab-members').click
+    @browser.find_element(:class, 'icon-add').click
+    # wait = Selenium::WebDriver::Wait.new(:timeout => 10)
+    wait.until { @browser.find_element(:id => 'principal_search').displayed? }
+    @browser.find_element(:id, 'principal_search').send_keys user_to_add
+    # wait = Selenium::WebDriver::Wait.new(:timeout => 10) # seconds
+    wait.until { @browser.find_elements(:name => "membership[user_ids][]").count == 1 }
 
-    assert_equal(true, @browser.find_element(:id, 'flash_notice').displayed?)
-#    <div class="flash notice" id="flash_notice">Successful creation.</div>
+    @browser.find_element(:name, "membership[user_ids][]").click
+
+    @browser.find_element(:name, "membership[role_ids][]").click
+
+    click_commit
+
+    assert_true(number_of_users==2)
   end
 
 
