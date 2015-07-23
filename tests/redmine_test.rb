@@ -65,10 +65,10 @@ class RedMineTest < Test::Unit::TestCase
     @browser.find_element(:id, 'tab-members').click
     @browser.find_element(:class, 'icon-add').click
     # wait = Selenium::WebDriver::Wait.new(:timeout => 10)
-    wait.until { @browser.find_element(:id => 'principal_search').displayed? }
+    @wait.until { @browser.find_element(:id => 'principal_search').displayed? }
     @browser.find_element(:id, 'principal_search').send_keys user_to_add
     # wait = Selenium::WebDriver::Wait.new(:timeout => 10) # seconds
-    wait.until { @browser.find_elements(:name => "membership[user_ids][]").count == 1 }
+    @wait.until { @browser.find_elements(:name => "membership[user_ids][]").count == 1 }
 
     @browser.find_element(:name, "membership[user_ids][]").click
 

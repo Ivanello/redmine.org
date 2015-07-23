@@ -20,9 +20,9 @@ module Helper_Method
     @browser.find_element(:id, 'user_lastname').send_keys 'ruby'
     @browser.find_element(:id, 'user_mail').send_keys login + '@blabla.com'
     @browser.find_element(:name, 'commit').click
-    # user_id = @browser.find_element(:class, 'user active').href
+    user_id = @browser.find_element(:class, 'active').attribute('href')
     # <a class="user active" href="/users/114158">ivanello</a>
-    # puts user_id
+    puts user_id
     return login
   end
 
@@ -40,6 +40,10 @@ module Helper_Method
 
   def click_commit
     @browser.find_element(:name, 'commit').click
+  end
+
+  def wait_ntil_visible(opt={})
+    @wait.until {}
   end
 
 end
