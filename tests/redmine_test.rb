@@ -64,21 +64,23 @@ class RedMineTest < Test::Unit::TestCase
     cr_project
     @browser.find_element(:id, 'tab-members').click
     @browser.find_element(:class, 'icon-add').click
-    # wait = Selenium::WebDriver::Wait.new(:timeout => 10)
     @wait.until { @browser.find_element(:id => 'principal_search').displayed? }
     @browser.find_element(:id, 'principal_search').send_keys user_to_add
-    # wait = Selenium::WebDriver::Wait.new(:timeout => 10) # seconds
     @wait.until { @browser.find_elements(:name => "membership[user_ids][]").count == 1 }
-
     @browser.find_element(:name, "membership[user_ids][]").click
+    @browser.find_elements(:css, '.roles-selection label')[0].click
+    @browser.find_element(:id, 'member-add-submit').click
+    @wait.until { @browser.find_element(:class => 'icon-edit').displayed? }
+    count=@browser.find_elements(:css, 'icon icon-del').size
+    assert_true(count==2)
 
-    @browser.find_element(:name, "membership[role_ids][]").click
 
-    click_commit
+    # array = @browser.find_elements(:css, '.roles-selection label') = Array (3 elements)
+    # array.map!{|el| el.text} = Array (3 elements)
+    # index = array.index('Manager') = 0
+    # @browser.find_elements(:css, '.roles-selection label')[index].find_element(:tag_name, 'input').click = "ok"
 
-    assert_true(number_of_users==2)
   end
-
 
 
 end
