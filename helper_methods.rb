@@ -11,7 +11,7 @@ module Helper_Method
   end
 
   def register
-    login = 'ivan' + rand(999).to_s
+    login = 'ivan' + rand(9999).to_s
     @browser.find_element(:class, 'register').click
     @browser.find_element(:id, 'user_login').send_keys login
     @browser.find_element(:id, 'user_password').send_keys '1234'
@@ -22,7 +22,7 @@ module Helper_Method
     @browser.find_element(:name, 'commit').click
     user_id = @browser.find_element(:class, 'active').attribute('href')
     # <a class="user active" href="/users/114158">ivanello</a>
-    puts user_id
+    # puts user_id
     return login
   end
 
@@ -34,6 +34,7 @@ module Helper_Method
     proj = 'proj' + rand(999).to_s
     @browser.find_element(:class, 'projects').click
     @browser.find_element(:class, 'icon-add').click
+    sleep 2
     @browser.find_element(:id, 'project_name').send_keys proj
     @browser.find_element(:name, 'commit').click
   end
@@ -44,6 +45,19 @@ module Helper_Method
 
   def wait_ntil_visible(opt={})
     @wait.until {}
+  end
+
+  def add_user2proj
+    @browser.find_element(:id, 'tab-members').click
+    @browser.find_element(:class, 'icon-add').click
+    @wait.until { @browser.find_element(:id => 'principal_search').displayed? }
+    @browser.find_element(:id, 'principal_search').send_keys @user_to_add
+    @wait.until { @browser.find_elements(:name => "membership[user_ids][]").count == 1 }
+    @browser.find_element(:name, "membership[user_ids][]").click
+    @browser.find_elements(:css, '.roles-selection label')[0].click
+    @browser.find_element(:id, 'member-add-submit').click
+    @wait.until { @browser.find_elements(:class => 'icon-edit').size>1 }
+    # assert_equal(true,(@browser.find_elements(:class, 'icon-edit').size)==2)
   end
 
 end

@@ -7,7 +7,7 @@ class RedMineTest < Test::Unit::TestCase
 
   def setup
     @browser = Selenium::WebDriver.for :firefox
-    @wait = Selenium::WebDriver::Wait.new(:timeout => 30)
+    @wait = Selenium::WebDriver::Wait.new(:timeout => 10)
   end
 
 #def teardown
@@ -58,7 +58,6 @@ class RedMineTest < Test::Unit::TestCase
   def test5_adduser_toproject
     go_to_home_page
     user_to_add=register
-    # puts user_to_add
     logout
     register
     cr_project
@@ -70,16 +69,36 @@ class RedMineTest < Test::Unit::TestCase
     @browser.find_element(:name, "membership[user_ids][]").click
     @browser.find_elements(:css, '.roles-selection label')[0].click
     @browser.find_element(:id, 'member-add-submit').click
-    @wait.until { @browser.find_element(:class => 'icon-edit').displayed? }
-    count=@browser.find_elements(:css, 'icon icon-del').size
-    assert_true(count==2)
+    @wait.until { @browser.find_elements(:class => 'icon-edit').size>1 }
+    assert_equal(true,(@browser.find_elements(:class, 'icon-edit').size)==2)
 
+
+
+  end
+
+  def test6_adduser_toproject
+    go_to_home_page
+    @user_to_add=register
+    logout
+    register
+    cr_project
+    add_user2proj
+
+    @browser.find_elements(:class, 'icon-edit')[1].click
+    @browser.find_elements(:css, '.roles label')[4].click
+    @browser.find_element(:css, ".even member>input[type = 'submit']").click
+
+    # @browser.find_element(:id, 'tab-members').click
+    @browser.find_elements(:class, 'icon-edit')[1].click
+    @browser.find_elements(:css, '.roles label')[4].click
 
     # array = @browser.find_elements(:css, '.roles-selection label') = Array (3 elements)
     # array.map!{|el| el.text} = Array (3 elements)
     # index = array.index('Manager') = 0
     # @browser.find_elements(:css, '.roles-selection label')[index].find_element(:tag_name, 'input').click = "ok"
 
+    membership[role_ids][]
+    <input name="membership[role_ids][]" value="3" checked="checked" type="checkbox">
   end
 
 
