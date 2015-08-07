@@ -76,7 +76,7 @@ class RedMineTest < Test::Unit::TestCase
 
   end
 
-  def test6_adduser_toproject
+  def test6_change_role
     go_to_home_page
     @user_to_add=register
     logout
@@ -88,9 +88,10 @@ class RedMineTest < Test::Unit::TestCase
     @browser.find_elements(:css, '.roles label')[4].click
     @browser.find_element(:css, ".even member>input[type = 'submit']").click
 
-    # @browser.find_element(:id, 'tab-members').click
+    @browser.find_element(:id, 'tab-members').click
     @browser.find_elements(:class, 'icon-edit')[1].click
     @browser.find_elements(:css, '.roles label')[4].click
+    @browser.find_elements(:id, 'member-add-submit').click
 
     # array = @browser.find_elements(:css, '.roles-selection label') = Array (3 elements)
     # array.map!{|el| el.text} = Array (3 elements)
@@ -98,7 +99,7 @@ class RedMineTest < Test::Unit::TestCase
     # @browser.find_elements(:css, '.roles-selection label')[index].find_element(:tag_name, 'input').click = "ok"
 
     membership[role_ids][]
-    <input name="membership[role_ids][]" value="3" checked="checked" type="checkbox">
+    # <input name="membership[role_ids][]" value="3" checked="checked" type="checkbox">
   end
 
 

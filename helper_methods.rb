@@ -16,11 +16,11 @@ module Helper_Method
     @browser.find_element(:id, 'user_login').send_keys login
     @browser.find_element(:id, 'user_password').send_keys '1234'
     @browser.find_element(:id, 'user_password_confirmation').send_keys '1234'
-    @browser.find_element(:id, 'user_firstname').send_keys 'itlabs'
-    @browser.find_element(:id, 'user_lastname').send_keys 'ruby'
+    @browser.find_element(:id, 'user_firstname').send_keys login
+    @browser.find_element(:id, 'user_lastname').send_keys login
     @browser.find_element(:id, 'user_mail').send_keys login + '@blabla.com'
     @browser.find_element(:name, 'commit').click
-    user_id = @browser.find_element(:class, 'active').attribute('href')
+    # user_id = @browser.find_element(:class, 'active').attribute('href')
     # <a class="user active" href="/users/114158">ivanello</a>
     # puts user_id
     return login
