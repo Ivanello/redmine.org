@@ -26,8 +26,24 @@ module Helper_Method
     return login
   end
 
-  def logout
+  def log_in (login)
+    @browser.find_element(:class, 'login').click
+    @browser.find_element(:id, 'username').send_keys login
+    @browser.find_element(:id, 'password').send_keys '1234'
+    @browser.find_element(:name,  'login').click
+  end
+
+  def log_out
     @browser.find_element(:class, 'logout').click
+  end
+
+  def change_pass
+    @browser.find_element(:class, 'my-account').click
+    @browser.find_element(:class, 'icon-passwd').click
+    @browser.find_element(:id, 'password').send_keys '1234'
+    @browser.find_element(:id, 'new_password').send_keys '12345'
+    @browser.find_element(:id, 'new_password_confirmation').send_keys '12345'
+    @browser.find_element(:name, 'commit').click
   end
 
   def cr_project
@@ -37,6 +53,18 @@ module Helper_Method
     sleep 2
     @browser.find_element(:id, 'project_name').send_keys proj
     @browser.find_element(:name, 'commit').click
+  end
+
+  def add_user_to_proj (user_to_add)
+    @browser.find_element(:id, 'tab-members').click
+    @browser.find_element(:class, 'icon-add').click
+    @wait.until { @browser.find_element(:id => 'principal_search').displayed? }
+    @browser.find_element(:id, 'principal_search').send_keys user_to_add
+    @wait.until { @browser.find_elements(:name => "membership[user_ids][]").count == 1 }
+    @browser.find_element(:name, "membership[user_ids][]").click
+    @browser.find_elements(:css, '.roles-selection label')[0].click
+    @browser.find_element(:id, 'member-add-submit').click
+    @wait.until { @browser.find_elements(:class => 'icon-edit').size>1 }
   end
 
   def click_commit

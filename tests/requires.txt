@@ -1,10 +1,10 @@
 Create Good enough test case (checklist) which cover (with assertions):
--Registration
--Log in/Log out
--Change Password
--Create Project
--Add another (your) user to the Project
-Edit their (users’) roles
-Create Project version
-Create all 3 types of issues
-Ensure they are visible on ‘Issues’ tab
+1-Registration
+2-Log in/Log out
+3-Change Password
+4-Create Project
+5-Add another (your) user to the Project
+6Edit their (users’) roles
+7Create Project version
+8Create all 3 types of issues
+9Ensure they are visible on ‘Issues’ tab
