@@ -7,7 +7,7 @@ Feature: Register Feature
     When I click "Register" link
     Then I am on Registraion Page
 
-  Scenario Outline: Registration
+  Scenario: Registration
     When I fill up registration fields
-    And Click "Commit" button
-    Then I have flash-notice
+    And Click "commit" button
+    Then I see message

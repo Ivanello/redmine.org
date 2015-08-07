@@ -19,14 +19,24 @@ When(/^I fill up registration fields$/) do
   @browser.find_element(:id, 'user_firstname').send_keys login
   @browser.find_element(:id, 'user_lastname').send_keys login
   @browser.find_element(:id, 'user_mail').send_keys login + '@blabla.com'
-  @browser.find_element(:name, 'commit').click
-  return login
+  # @browser.find_element(:name, 'commit').click
+  # return login
 end
 
 And(/^Click "([^"]*)" button$/) do |button_name|
-  @driver.find_element(link_text: button_name).click
+  @driver.find_element(name: button_name).click
 end
 
-Then(/^I have flash\-notice$/) do
-  assert_equal(true, @browser.find_element(:id, 'flash_notice').displayed?)
+# Then(/^I have flash\-notice$/) do
+#
+#   assert_equal(true, @browser.find_element(:id, 'flash_notice').displayed?)
+#   # http://demo.redmine.org/my/account
+# end
+
+Then(/^I have url contain "my\/account" word$/) do |url|
+  expect(@driver.current_url).to include url
+end
+
+Then(/^I see message$/) do
+  expect(@driver.find_element(id: 'flash_notice').displayed?).to be true
 end
