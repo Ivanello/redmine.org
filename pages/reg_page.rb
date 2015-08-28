@@ -4,15 +4,15 @@ class RegPage
 
   page_url 'http://demo.redmine.org/account/register'
 
-  @@log = 'test' + rand(999).to_s
+  @@rnd_login = 'test' + rand(999).to_s
 
   DEFAULT_DATA={
-      login:@@log,
+      login:@@rnd_login,
       pass:1234,
       pass_conf:1234,
-      firstname:@@log,
-      lastname:@@log,
-      email:@@log+'@test.com'
+      firstname:@@rnd_login,
+      lastname:@@rnd_login,
+      email:@@rnd_login+'@test.com'
   }
 
   text_field(:login, id:'user_login')
