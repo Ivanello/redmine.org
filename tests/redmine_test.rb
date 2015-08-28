@@ -10,9 +10,9 @@ class RedMineTest < Test::Unit::TestCase
     @wait = Selenium::WebDriver::Wait.new(:timeout => 10)
   end
 
-#def teardown
-#@browser.quit
-#end
+  def teardown
+  @browser.quit
+  end
 
   def test1_registration
     go_to_home_page

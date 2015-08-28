@@ -66,11 +66,13 @@ PLATFORMS
 
 DEPENDENCIES
   cucumber
+  data_magic
   page-object
   rake
   rspec
   selenium-webdriver
   test-unit
+  watir-webdriver
 
 BUNDLED WITH
    1.10.6

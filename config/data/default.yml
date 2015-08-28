@@ -1,0 +1,25 @@
+data:
+  :incorrect_login:
+    :login: '*&^$%#'
+  :empty_login:
+    :login: ''
+  :too_long_login:
+    :login: 'asdfasdfsadfasdfasdfasdfasdfasdfasdfasdfasdfasdfsadfasdfasdfsadfasdfasdfasdfasdfasdfasdfasdfasdfasdfsadfasdfasdfsadfasdfasdfasdfasdfasdfasdfasdfasdfasdfsadf'
+  :login_is_taken:
+    :login: 'test'
+  :password_too_short:
+    :pass: '123'
+  :password_blank:
+    :pass: ''
+  :password_dont_match:
+    :pass: '12345'
+
+
+messages:
+  :incorrect_login: 'Login is invalid'
+  :empty_login: 'Login cannot be blank'
+  :too_long_login: 'Login is too long (maximum is 60 characters)'
+  :login_is_taken: 'Login has already been taken'
+  :password_too_short: 'Password is too short (minimum is 4 characters)'
+  :password_blank: 'Password is too short (minimum is 4 characters)'
+  :password_dont_match: "Password doesn't match confirmation"
