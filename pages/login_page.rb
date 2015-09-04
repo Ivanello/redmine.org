@@ -16,9 +16,9 @@ class LoginPage
     login
   end
 
-  def messages
-    warnings_elements.map{|el| el.text}
-    # warnings_elements.map(&:text)
-  end
+  # def messages
+  #   warnings_elements.map{|el| el.text}
+  #   # warnings_elements.map(&:text)
+  # end
 
 end
